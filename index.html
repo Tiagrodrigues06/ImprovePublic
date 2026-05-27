@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scouting Pro Dashboard</title>
+    <meta name="description" content="Dashboard de Scouting Avançado com métricas, golos e eficiências do futebol português.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🔍 Filtros de Scouting</h2>
+            </div>
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="nome">Nome do Jogador</label>
+                    <input type="text" id="nome" placeholder="Ex: Guedes...">
+                </div>
+
+                <div class="filter-group">
+                    <label for="categoria">Categoria de Liga</label>
+                    <div id="categoria-chips" class="chip-container">
+                        <button class="chip" data-value="Liga Nacional">Liga Nacional</button>
+                        <button class="chip" data-value="1ª Divisão Distrital">1ª Divisão</button>
+                        <button class="chip" data-value="2ª Divisão Distrital">2ª Divisão</button>
+                        <button class="chip" data-value="Ligas Formação">Formação</button>
+                        <button class="chip" data-value="Estrangeiro">Estrangeiro</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label for="divisao">Divisão</label>
+                    <select id="divisao" multiple></select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="equipa">Equipa</label>
+                    <select id="equipa" multiple></select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="posicao">Posição</label>
+                    <select id="posicao" multiple></select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Idade do Jogador: <span id="idade-val">Todas</span></label>
+                    <div class="range-container">
+                        <input type="range" id="idade-min" min="14" max="45" value="14">
+                        <input type="range" id="idade-max" min="14" max="45" value="45">
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Mínimo de Jogos (J): <span id="jogos-val">5</span></label>
+                    <input type="range" id="min-jogos" min="0" max="50" value="5">
+                </div>
+
+                <button id="reset-filters" class="btn-primary">Limpar Filtros</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>🛡️ Improve Sports - Base de Dados</h1>
+            </header>
+
+            <!-- Metrics -->
+            <section class="metrics">
+                <div class="metric-card">
+                    <h4>Total Jogadores</h4>
+                    <h2 id="metric-total">-</h2>
+                </div>
+                <div class="metric-card">
+                    <h4>Máximo Golos</h4>
+                    <h2 id="metric-max-gols">-</h2>
+                </div>
+                <div class="metric-card">
+                    <h4>Média Idades</h4>
+                    <h2 id="metric-avg-idade">-</h2>
+                </div>
+                <div class="metric-card">
+                    <h4>Golos Totais (Filtro)</h4>
+                    <h2 id="metric-total-gols">-</h2>
+                </div>
+            </section>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="tab-marcadores">🔥 Top Marcadores</button>
+                <button class="tab-btn" data-tab="tab-eficiencia">⚡ Eficiência</button>
+                <button class="tab-btn" data-tab="tab-plantel">📋 Plantel Completo</button>
+                <button class="tab-btn" data-tab="tab-u23-mins">⏱️ U23 (Minutos)</button>
+                <button class="tab-btn" data-tab="tab-u23-gols">⚽ U23 (Golos)</button>
+            </div>
+
+            <!-- Tab Content -->
+            <section class="tab-content">
+                <!-- Data Table View -->
+                <div class="table-container">
+                    <table id="data-table">
+                        <thead>
+                            <tr id="table-head">
+                                <!-- Generated by JS -->
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <tr><td colspan="100%" style="text-align: center; padding: 40px;">A carregar dados...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <button id="btn-prev" disabled>Anterior</button>
+                    <span id="page-info">Página 1 de 1</span>
+                    <button id="btn-next" disabled>Próxima</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
