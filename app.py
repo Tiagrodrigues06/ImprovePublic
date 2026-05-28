@@ -99,7 +99,7 @@ def load_data():
             if renames:
                 df = df.rename(columns=renames)
         except Exception as e:
-            st.error(f"Erro ao ler BD SQLite: {e}")
+            # Fallback silencioso para Excel em caso de erro na DB
             df = None
 
     if df is None or df.empty:
