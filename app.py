@@ -149,6 +149,18 @@ def load_data():
 
     # Coluna Relatório (Google Forms pré-preenchido)
     def generate_form_link(row):
+        divisao = str(row.get('Divisao', ''))
+        ligas_permitidas = [
+            'CP_SerieA', 'CP_SerieB', 'CP_SerieC', 'CP_SerieD', 
+            'Liga3_SerieA', 'Liga3_SerieB', 
+            'Porto', 'Lisboa', 'Aveiro', 
+            'LigaRev_SerieNorte', 'LigaRev_SerieSul', 
+            'Sub23-SerieNorte', 'Sub23-SerieSul', 
+            'Copinha', 'National_I'
+        ]
+        if divisao not in ligas_permitidas:
+            return None
+            
         nome = str(row.get('Jogador', ''))
         equipa = str(row.get('Equipa', ''))
         texto = f"{nome} [{equipa}]" if equipa else nome
